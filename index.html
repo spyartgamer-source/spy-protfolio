@@ -1,0 +1,329 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Spyop — Esports Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0b10;
+      --card:#0e0f16;
+      --muted:#9aa0b4;
+      --accent1:#7c4dff;
+      --accent2:#00e6ff;
+      --glass: rgba(255,255,255,0.03);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,#050508 0%,#0b0b10 100%);font-family:Inter,system-ui,Segoe UI,Roboto,Arial;color:#e6edf3}
+    a{color:inherit}/* canvas full-bleed */
+#bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none}
+
+.site{
+  position:relative;z-index:2;max-width:1100px;margin:40px auto;padding:36px;
+}
+.card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));backdrop-filter:blur(6px);border-radius:14px;padding:28px;box-shadow:0 6px 30px rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.03)}
+
+header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--accent1),var(--accent2));display:grid;place-items:center;font-weight:800;color:#061018;font-size:20px;box-shadow:0 6px 20px rgba(124,77,255,0.12)}
+.title{line-height:1}
+.title h1{margin:0;font-size:20px;letter-spacing:0.6px}
+.title p{margin:0;color:var(--muted);font-size:12px}
+
+nav{display:flex;gap:12px}
+nav a{font-weight:600;padding:8px 12px;border-radius:8px;color:var(--muted);text-decoration:none}
+nav a:hover{background:rgba(255,255,255,0.02);color:#fff}
+
+.hero{display:grid;grid-template-columns:1fr 380px;gap:28px;margin-top:24px;align-items:center}
+.hero-left h2{margin:0;font-size:32px}
+.hero-left p{color:var(--muted);margin-top:8px}
+.cta{margin-top:18px;display:flex;gap:12px}
+.btn{padding:10px 16px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:linear-gradient(90deg, rgba(124,77,255,0.14), rgba(0,230,255,0.06));cursor:pointer;font-weight:700}
+
+.card-3d{height:300px;border-radius:12px;overflow:hidden;position:relative}
+.meta{display:flex;gap:12px;margin-top:18px}
+.chip{background:var(--glass);padding:8px 12px;border-radius:999px;font-size:13px;color:var(--muted);border:1px solid rgba(255,255,255,0.02)}
+
+/* sections */
+section{margin-top:20px}
+h3{margin:0 0 12px 0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.panel{background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
+.panel p{color:var(--muted);margin:8px 0 0 0;font-size:14px}
+
+.skills{display:flex;flex-wrap:wrap;gap:10px}
+.skill{padding:8px 12px;background:rgba(255,255,255,0.02);border-radius:999px;font-weight:600;color:var(--muted);font-size:13px}
+
+.gallery{display:flex;gap:12px;flex-wrap:wrap}
+.thumb{width:calc(33% - 8px);min-height:120px;border-radius:8px;background:linear-gradient(135deg,var(--accent1),var(--accent2));display:flex;align-items:center;justify-content:center;font-weight:700}
+
+footer{margin-top:28px;display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:13px}
+
+/* responsive */
+@media (max-width:980px){
+  .hero{grid-template-columns:1fr;}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .thumb{width:48%}
+}
+@media (max-width:560px){
+  .site{padding:18px;margin:18px}
+  .grid{grid-template-columns:1fr}
+  .thumb{width:100%}
+}
+
+/* tiny animated accent */
+.neon-line{height:2px;background:linear-gradient(90deg,var(--accent1),var(--accent2));border-radius:2px;margin-top:12px}
+
+  </style>
+</head>
+<body>
+  <canvas id="bg-canvas"></canvas>
+  <div class="site">
+    <div class="card">
+      <header>
+        <div class="brand">
+          <div class="logo">SP</div>
+          <div class="title">
+            <h1>SPYOP</h1>
+            <p>Esports Manager · Tournament Coordinator</p>
+          </div>
+        </div>
+        <nav>
+          <a href="#about">About</a>
+          <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </header><div class="hero">
+    <div class="hero-left">
+      <h2>Design-forward esports portfolio with 3D motion.</h2>
+      <p>Clean. Aesthetic. Pro-level UI/UX touches with subtle 3D motion to bring the vibe alive.</p>
+
+      <div class="cta">
+        <button class="btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact</button>
+        <button class="btn" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">See Projects</button>
+      </div>
+
+      <div class="meta">
+        <div class="chip">DraKonis 5K — Tournament Manager</div>
+        <div class="chip">NVIDIA Event — Volunteer</div>
+        <div class="chip">SpyQuest — Bot Project</div>
+      </div>
+    </div>
+
+    <div class="card-3d">
+      <!-- 3D scene inserted by three.js -->
+      <div id="three-root" style="width:100%;height:100%"></div>
+    </div>
+  </div>
+
+  <div class="neon-line"></div>
+
+  <section id="about">
+    <h3>About</h3>
+    <p style="color:var(--muted)">I focus on tournament coordination, team scheduling, accurate match updates, and smooth event execution. My approach is practical and professional — built to make tournaments run on time and without friction.</p>
+  </section>
+
+  <section id="experience">
+    <h3>Experience</h3>
+    <div class="grid" style="margin-top:12px">
+      <div class="panel">
+        <strong>Leviathan Esports — Tournament Manager</strong>
+        <p>Managed and promoted DraKonis 5K. Organized match schedules, handled team IDs, and updated points for timely results.</p>
+      </div>
+      <div class="panel">
+        <strong>NVIDIA Event — Volunteer</strong>
+        <p>Supported on-ground logistics, assisting staff and participants during event sessions.</p>
+      </div>
+      <div class="panel">
+        <strong>SpyQuest — Discord Bot (WIP)</strong>
+        <p>Personal project to automate parts of tournament handling, like match reminders and roster checks.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h3>Projects & Highlights</h3>
+    <div class="grid" style="margin-top:12px">
+      <div class="panel">
+        <strong>DraKonis 5K — Semi-finals
+
+</strong>
+            <p>Oversaw team grouping and scheduling during the semi-finals; kept results consistent and communicated clearly to teams.</p>
+          </div>
+          <div class="panel">
+            <strong>Tournament Ops Templates</strong>
+            <p>Reusable templates for match scheduling, ID forms, and point calculation — designed to speed up event setup.</p>
+          </div>
+          <div class="panel">
+            <strong>Volunteer Ops</strong>
+            <p>Hands-on experience coordinating with event staff at live esports events.</p>
+          </div>
+        </div>
+      </section><section id="skills">
+    <h3>Core Skills</h3>
+    <div class="skills" style="margin-top:10px">
+      <div class="skill">Tournament Management</div>
+      <div class="skill">Team Coordination</div>
+      <div class="skill">Event Handling</div>
+      <div class="skill">Scheduling</div>
+      <div class="skill">Discord Ops</div>
+      <div class="skill">Professional Communication</div>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <h3>Gallery</h3>
+    <div class="gallery" style="margin-top:10px">
+      <div class="thumb">DraKonis</div>
+      <div class="thumb">Event Banner</div>
+      <div class="thumb">Match Board</div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h3>Contact</h3>
+    <p style="color:var(--muted)">Reach out for collaborations, event opportunities, or freelance tournament coordination.</p>
+    <div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap">
+      <div class="panel">
+        <strong>Email</strong>
+        <p style="color:var(--muted);margin-top:8px">spyop.contact@gmail.com</p>
+      </div>
+      <div class="panel">
+        <strong>Discord</strong>
+        <p style="color:var(--muted);margin-top:8px">Spyop#XXXX</p>
+      </div>
+      <div class="panel">
+        <strong>Instagram</strong>
+        <p style="color:var(--muted);margin-top:8px">@spyop.gg</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>© SPYOP — Esports Portfolio</div>
+    <div style="color:var(--muted)">Built with aesthetic 3D motion</div>
+  </footer>
+
+</div>
+
+  </div>  <!-- three.js from CDN -->  <script src="https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.min.js"></script>  <script>
+    // Scene setup
+    const canvas = document.getElementById('bg-canvas');
+    const renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:true});
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.toneMappingExposure = 1.0;
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(50, window.innerWidth/window.innerHeight, 0.1, 1000);
+    camera.position.set(0,0,50);
+
+    // lights
+    const amb = new THREE.AmbientLight(0xffffff,0.15);
+    scene.add(amb);
+    const pLight = new THREE.PointLight(0x7c4dff,1.2,150);
+    pLight.position.set(50,50,50);
+    scene.add(pLight);
+    const cLight = new THREE.PointLight(0x00e6ff,1.0,150);
+    cLight.position.set(-50,-30,40);
+    scene.add(cLight);
+
+    // neon torus
+    const g = new THREE.TorusKnotGeometry(10,2.6,160,20,2,3);
+    const mat = new THREE.MeshStandardMaterial({
+      emissive:0x7c4dff,
+      emissiveIntensity:0.7,
+      metalness:0.2,
+      roughness:0.1,
+      color:0x0a0710,
+      transparent:true
+    });
+    const mesh = new THREE.Mesh(g,mat);
+    mesh.rotation.x = 0.6;
+    scene.add(mesh);
+
+    // particle halo
+    const particles = new THREE.BufferGeometry();
+    const count = 8000;
+    const positions = new Float32Array(count * 3);
+    for(let i=0;i<count;i++){
+      const r = 30 + Math.random()*60;
+      const theta = Math.random()*Math.PI*2;
+      const phi = (Math.random()-0.5)*Math.PI;
+      positions[i*3] = r*Math.cos(theta)*Math.cos(phi);
+      positions[i*3+1] = r*Math.sin(phi);
+      positions[i*3+2] = r*Math.sin(theta)*Math.cos(phi);
+    }
+    particles.setAttribute('position', new THREE.BufferAttribute(positions,3));
+    const pMat = new THREE.PointsMaterial({size:0.4,transparent:true,opacity:0.8,color:0xffffff});
+    const pointCloud = new THREE.Points(particles,pMat);
+    scene.add(pointCloud);
+
+    // small logo-like cube in the hero card area
+    const heroRoot = document.getElementById('three-root');
+    const heroScene = new THREE.Scene();
+    const heroCam = new THREE.PerspectiveCamera(45, heroRoot.clientWidth/heroRoot.clientHeight, 0.1, 1000);
+    heroCam.position.set(0,0,45);
+    const hRender = new THREE.WebGLRenderer({antialias:true,alpha:true});
+    hRender.setSize(heroRoot.clientWidth, heroRoot.clientHeight);
+    heroRoot.appendChild(hRender.domElement);
+
+    const hLight = new THREE.PointLight(0xffffff,0.9);
+    hLight.position.set(30,30,30);
+    heroScene.add(hLight);
+    const cubeG = new THREE.BoxGeometry(18,10,6);
+    const cubeM = new THREE.MeshStandardMaterial({color:0x071224,emissive:0x7c4dff,emissiveIntensity:0.5,metalness:0.5,roughness:0.2});
+    const cube = new THREE.Mesh(cubeG,cubeM);
+    heroScene.add(cube);
+
+    // responsive
+    function onResize(){
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      camera.aspect = window.innerWidth/window.innerHeight;
+      camera.updateProjectionMatrix();
+
+      hRender.setSize(heroRoot.clientWidth, heroRoot.clientHeight);
+      heroCam.aspect = heroRoot.clientWidth/heroRoot.clientHeight;
+      heroCam.updateProjectionMatrix();
+    }
+    window.addEventListener('resize', onResize);
+
+    // subtle mouse parallax
+    let mouseX=0, mouseY=0;
+    document.addEventListener('mousemove',(e)=>{
+      mouseX = (e.clientX - window.innerWidth/2) / window.innerWidth * 2;
+      mouseY = (e.clientY - window.innerHeight/2) / window.innerHeight * 2;
+    });
+
+    // animate
+    const clock = new THREE.Clock();
+    function animate(){
+      const t = clock.getElapsedTime();
+      mesh.rotation.x += 0.003 + mouseY*0.002;
+      mesh.rotation.y += 0.004 + mouseX*0.002;
+      pointCloud.rotation.y = t*0.02;
+      pLight.position.x = Math.sin(t*0.8)*60;
+      cLight.position.x = Math.cos(t*0.6)*60;
+      renderer.render(scene,camera);
+
+      // hero cube bob
+      cube.rotation.x = Math.sin(t*0.9)*0.3;
+      cube.rotation.y = Math.cos(t*0.6)*0.6;
+      cube.position.x = Math.sin(t*0.5)*1.2;
+      hRender.render(heroScene,heroCam);
+
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    // small caret: adjust camera slowly
+    (function floatCam(){
+      camera.position.z = 48 + Math.sin(Date.now()*0.0006)*3;
+      requestAnimationFrame(floatCam);
+    })();
+
+  </script></body>
+</html>
